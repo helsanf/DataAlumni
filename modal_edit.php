@@ -1,26 +1,37 @@
+<html>
+<head>
+  <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
+</head>
+<body>
 
 <?php
     include "koneksi.php";
-	$id=$_GET['id'];
-	$p=mysqli_query($conn, "SELECT * FROM siswa WHERE id='$id'");
+	$nis=$_GET['nis'];
+	$p=mysqli_query($conn, "SELECT * FROM siswa WHERE nis='".$nis."'");
 	while($r=mysqli_fetch_array($p)){
 ?>
 
-<div class="modal-dialog">
-  <div class="modal-content">
-    <form class="form-horizontal" method="post" action="proses_ubah.php" enctype="multipart/form-data">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">Default Modal</h4>
-    </div>
+
+
+    <form class="form-horizontal" method="post" action="proses_ubah.php?nis=<?php echo $nis; ?>" enctype="multipart/form-data">
     <div class="modal-body">
       <!-- dibawah taruh file form simpan -->
 
       <div class="form-group ">
         <label for="nis" class="control-label col-sm-2">NIS :</label>
         <div class="col-sm-6">
-        <input type="text" class="form-control" name="nisnya" value="<?php echo $r['nis']; ?>">
+        <input type="text" class="form-control" name="nis" value="<?php echo $r['nis']; ?>">
       </div>
       </div>
       <div class="form-group">
@@ -38,7 +49,7 @@
       <div class="form-group">
         <label for="nama" class="control-label col-sm-2">Nama :</label>
         <div class="col-sm-6">
-        <input type="text" class="form-control" name="namanya" value="<?php echo $r['nama']; ?>">
+        <input type="text" class="form-control" name="nama" value="<?php echo $r['nama']; ?>">
       </div>
     </div>
     <div class="form-group">
@@ -80,7 +91,9 @@
       <input type="submit" name="simpan" value="simpan" class="btn btn-success" >
     </div>
     </form>
-  </div>
-  <!-- /.modal-content -->
-</div>
+
+
 <?php } ?>
+
+</body>
+</html>

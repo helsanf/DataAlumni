@@ -251,9 +251,7 @@ or die("Error: ".mysqli_error($conn));
                 }
                 ?>
                 <td><?php echo $data['alamat']; ?></td>
-                <td><a href="#" class='open_modal btn btn-success' id='<?php echo  $data['nis']; ?>'>Edit</a>
-                    <a href="#" class="btn btn-danger" onclick="confirm_modal('proses_delete.php?&modal_id=<?php echo  $data['nis']; ?>');">Hapus</a>
-                  </td>
+                <?php echo "<td><a href='#modal-edit' class='btn btn-default btn-small' id='custId' data-toggle='modal' data-id=".$data['nis'].">Edit</a></td>"; ?>
               </tr>
             <?php }
 
@@ -291,9 +289,26 @@ or die("Error: ".mysqli_error($conn));
         </div>
 
         <!-- Modal Popup untuk Edit-->
-        <div id="ModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal-edit" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Edit Data</h4>
+              </div>
+              <div class="modal-body">
+                <div class="isi-data"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
+
 
         </div>
+        <!-- Modal Edit END-->
 
         <div class="modal fade" id="modal-default">
           <div class="modal-dialog">
@@ -407,7 +422,7 @@ or die("Error: ".mysqli_error($conn));
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -441,20 +456,20 @@ or die("Error: ".mysqli_error($conn));
 </script>
 <!-- Javascript untuk popup modal Edit-->
 <script type="text/javascript">
-   $(document).ready(function () {
-   $(".open_modal").click(function(e) {
-      var m = $(this).attr("id");
-		   $.ajax({
-    			   url: "modal_edit.php",
-    			   type: "GET",
-    			   data : {id: m,},
-    			   success: function (ajaxData){
-      			   $("#ModalEdit").html(ajaxData);
-      			   $("#ModalEdit").modal('show',{backdrop: 'true'});
-      		   }
-    		   });
-        });
-      });
+$(document).ready(function(){
+$('#modal-edit').on('show.bs.modal', function (e) {
+    var nis = $(e.relatedTarget).data('id');
+    //menggunakan fungsi ajax untuk pengambilan data
+    $.ajax({
+    type : 'get',
+    url : 'modal_edit.php',
+    data : 'nis='+ nis,
+    success : function(data){
+    $('.isi-data').html(data);//menampilkan data ke dalam modal
+    }
+    });
+    });
+    });
 </script>
 </body>
 </html>
