@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-
 <?php
-
+session_start();
 include "koneksi.php";
 
+    
 
 if(isset($_SESSION['user'])){
   echo "<script language = 'javascript'>
