@@ -78,7 +78,8 @@
       <div class="form-group">
         <label for="foto" class="control-label col-sm-2">Foto : </label>
         <div class="col-sm-6">
-          <input type="file" name="ubah_foto">
+          <input type="checkbox" name="ubah_foto" value="true"> Ceklis jika ingin mengubah foto<br>
+          <input type="file" name="foto">
         </div>
       </div>
       <div class="form-group">

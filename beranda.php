@@ -62,7 +62,7 @@ or die("Error: ".mysqli_error($conn));
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
+        Beranda
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
@@ -76,106 +76,7 @@ or die("Error: ".mysqli_error($conn));
     <section class="content">
 
       <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Data Alumni</h3>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body">
-          <?php if (isset($_GET['tahun'])){ ?>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-              TAMBAH DATA SISWA
-            </button>
-            <table id="example1" class="table table-bordered table-striped">
-              <thead>
-                  <tr>
-                    <th>Foto</th>
-                    <th>NIS</th>
-                    <th>Nama</th>
-                    <th>Tahun</th>
-                    <th>Jenis Kelamin</th>
-                    <?php if($_SESSION['status'] == 1){
-                      echo "<th>Telepon</th>";
-                    }
-                    ?>
-                    <th>Alamat</th>
-                    <th>Aksi</th>
-                  </tr>
-              </thead>
-
-            <?php
-            // Load file koneksi.php
-
-            /*$perPage = 5; // perhalaman ada berapa Isi
-            $page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : 1; // sama dengan fungsi if
-            $start = ($page >1) ? ($page * $perPage) - $perPage : 0;
-
-            $articles ="SELECT * FROM siswa LIMIT $start, $perPage";
-            $result2 = mysqli_query($connect,$articles);
-
-            $all = "SELECT * FROM siswa";
-            $result = mysqli_query($connect,$all);
-            $total = mysqli_num_rows($result);
-
-            $pages = ceil($total/$perPage);
-          */
-
-            //$query = "SELECT * FROM siswa"; // Query untuk menampilkan semua data siswa
-            //$sql = mysqli_query($connect, $query); // Eksekusi/Jalankan query dari variabel $query
-
-            while ($data = mysqli_fetch_array($r)) { ?>
-              <tr>
-                <td><img src='images/<?php echo $data['foto'];  ?>' width='50' height='50'></td>
-                <td><?php echo $data['nis']; ?></td>
-                <td><?php echo $data['nama']; ?></td>
-                <td><?php echo $data['tahun']; ?></td>
-                <td><?php echo $data['jenis_kelamin']; ?></td>
-                <?php if($_SESSION['status'] == 1){
-                  echo "<td>".$data['telp']."</td>";
-                }
-                ?>
-                <td><?php echo $data['alamat']; ?></td>
-                <?php echo "<td><a href='#modal-edit' class='btn btn-default btn-small' id='custId' data-toggle='modal' data-id=".$data['nis'].">Edit</a></td>"; ?>
-              </tr>
-            <?php }
-
-            ?>
-
-            </table>
-            <?php /*<div class="" align="center">?>
-              <?php for($i=1; $i<=$pages; $i++){ ?>
-                <ul class="pagination pagination-lg">
-                  <li><a href="?halaman=<?php echo $i?>"> <?php echo $i?></a></li>
-                </ul>
-                <?php } */ ?>
-              </div>
-          </div>
-        <?php }else{ ?>
-          <div class="rows">
-            <div class="col-sm-8 col-md-offset-2">
-              <form method="get">
-                <div class="form-group">
-                  <label for="tahun" class="control-label col-md-2"> Tahun </label>
-                  <div class="col-md-6">
-                    <select class="form-control" name="tahun">
-                      <?php for ($i=2015; $i > 1990 ; $i--) { ?>
-                        <option><?php echo $i ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
-        </div>
-        <?php } ?>
 
         </div>
 
