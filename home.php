@@ -2,12 +2,12 @@
 <?php
 include "koneksi.php";
 include "session.php";
-$query ="SELECT * FROM siswa";
+$query ="SELECT * FROM siswa"; // query semua colum dalam table databse
 if (isset($_GET['tahun'])) {
-  $query ="SELECT * FROM siswa WHERE tahun = '$_GET[tahun]'";
+  $query ="SELECT * FROM siswa WHERE tahun = '$_GET[tahun]'"; // query cari kolum dalam table ( KOLUM TAHUN )
 }
 
-$r = mysqli_query($conn,$query)
+$r = mysqli_query($conn,$query) // panggil semua kolum dari variable $query diatas
 or die("Error: ".mysqli_error($conn));
  ?>
 
@@ -15,7 +15,7 @@ or die("Error: ".mysqli_error($conn));
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Blank Page</title>
+  <title>SMAN 1 TAMBUN UTARA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -61,10 +61,10 @@ or die("Error: ".mysqli_error($conn));
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
+      <h1 align="center">
+        Data Alumni SMA Negeri 1 Tambun Utara
       </h1>
+    <center>  <img src="images/tamara.png" class="img-circle" alt="Tamara" width="200" height="200"></center>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
@@ -78,7 +78,7 @@ or die("Error: ".mysqli_error($conn));
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Data Alumni</h3>
+          <center><h3 class="box-title">Silahkan Pilih Tahun Berapa Anda lulus!</h3></center>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -90,9 +90,11 @@ or die("Error: ".mysqli_error($conn));
         </div>
         <div class="box-body">
           <?php if (isset($_GET['tahun'])){ ?>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default" >
               TAMBAH DATA SISWA
-            </button>
+            </button></center>
+            <!-- End Modal Tambah Data Siswa -->
+            <!-- Tampil Table -->
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                   <tr>
@@ -105,30 +107,17 @@ or die("Error: ".mysqli_error($conn));
                       echo "<th>Telepon</th>";
                     }
                     ?>
-                    <th>Alamat</th>
-                    <th>Aksi</th>
+                    <th style="width:30%;">Alamat</th>
+                    <?php if($_SESSION['status'] == 1){
+                      echo "<th style='width:20%;'>Aksi</th>";
+                    } ?>
+                    <th  style="width:10%;"> Sosial Media </th>
+
                   </tr>
               </thead>
 
             <?php
-            // Load file koneksi.php
 
-            /*$perPage = 5; // perhalaman ada berapa Isi
-            $page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : 1; // sama dengan fungsi if
-            $start = ($page >1) ? ($page * $perPage) - $perPage : 0;
-
-            $articles ="SELECT * FROM siswa LIMIT $start, $perPage";
-            $result2 = mysqli_query($connect,$articles);
-
-            $all = "SELECT * FROM siswa";
-            $result = mysqli_query($connect,$all);
-            $total = mysqli_num_rows($result);
-
-            $pages = ceil($total/$perPage);
-          */
-
-            //$query = "SELECT * FROM siswa"; // Query untuk menampilkan semua data siswa
-            //$sql = mysqli_query($connect, $query); // Eksekusi/Jalankan query dari variabel $query
 
             while ($data = mysqli_fetch_array($r)) { ?>
               <tr>
@@ -142,11 +131,23 @@ or die("Error: ".mysqli_error($conn));
                 }
                 ?>
                 <td><?php echo $data['alamat']; ?></td>
-                <?php echo "<td><a href='#modal-edit' class='btn btn-default btn-small' id='custId' data-toggle='modal' data-id=".$data['nis'].">Edit</a></td>"; ?>
+                <?php if($_SESSION['status'] == 1){
+                  echo "<td>
+                  <a href='#modal-edit' class='btn btn-success btn-small' id='custId' data-toggle='modal' data-id=".$data['nis'].">Edit</a>
+                  <a class='btn btn-danger' href='proses_hapus.php?nis=".$data['nis']."'>Hapus</a>
+                  </td>";} ?>
+                  <!-- dibawah ini outputan social media -->
+                  <td><a href="<?php echo $data['fb_user'];?>"><img src="images/facebook.png" style="width:30px;height:30;">
+                    <a href="<?php echo $data['insta_user'];?>"><img src="images/instagram.png" style="width:30px;height:30;">
+
+                  </td>
               </tr>
+
             <?php }
 
+
             ?>
+
 
             </table>
             <?php /*<div class="" align="center">?>
@@ -157,7 +158,8 @@ or die("Error: ".mysqli_error($conn));
                 <?php } */ ?>
               </div>
           </div>
-        <?php }else{ ?>
+        <?php }
+        else{ ?>
           <div class="rows">
             <div class="col-sm-8 col-md-offset-2">
               <form method="get">
@@ -244,7 +246,7 @@ or die("Error: ".mysqli_error($conn));
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
-      'searching'   : false,
+      'searching'   : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false

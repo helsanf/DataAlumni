@@ -11,6 +11,8 @@ $telp = $_POST['telp'];
 $alamat = $_POST['alamat'];
 $foto = $_FILES['foto']['name'];
 $tmp = $_FILES['foto']['tmp_name'];
+$fb_user = $_POST['fb_user'];
+$insta_user = $_POST['insta_user'];
 
 // Rename nama fotonya dengan menambahkan tanggal dan jam upload
 $fotobaru = date('dmYHis').$foto;
@@ -21,7 +23,7 @@ $path = "images/".$fotobaru;
 // Proses upload
 if(move_uploaded_file($tmp, $path)){ // Cek apakah gambar berhasil diupload atau tidak
 	// Proses simpan ke Database
-	$query = "INSERT INTO siswa VALUES('','".$nis."', '".$nama."','".$tahun."' , '".$jenis_kelamin."', '".$telp."', '".$alamat."', '".$fotobaru."')";
+	$query = "INSERT INTO siswa VALUES('','".$nis."', '".$nama."','".$tahun."' , '".$jenis_kelamin."', '".$telp."', '".$alamat."', '".$fotobaru."', '".$fb_user."', '".$insta_user."')";
 	$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 	if($sql){ // Cek jika proses simpan ke database sukses atau tidak
@@ -30,11 +32,11 @@ if(move_uploaded_file($tmp, $path)){ // Cek apakah gambar berhasil diupload atau
 	}else{
 		// Jika Gagal, Lakukan :
 		echo "Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.";
-		echo "<br><a href='form_simpan.php'>Kembali Ke Form</a>";
+		echo "<br><a href='home.php'>Kembali Ke Form</a>";
 	}
 }else{
 	// Jika gambar gagal diupload, Lakukan :
 	echo "Maaf, Gambar gagal untuk diupload.";
-	echo "<br><a href='form_simpan.php'>Kembali Ke Form</a>";
+	echo "<br><a href='home.php'>Kembali Ke Form</a>";
 }
 ?>

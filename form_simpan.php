@@ -21,7 +21,7 @@ body {
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<title>Aplikasi CRUD dengan PHP</title>
+
 </head>
 <body>
 	<div class="container">
@@ -73,12 +73,14 @@ body {
 		<textarea class="form-control" name="alamat" placeholder="Masukan Alamat Anda"></textarea>
 		</div>
 	</div>
+
 	<div class="form-group">
 		<label for="foto" class="control-label col-sm-2">Foto : </label>
 		<div class="col-sm-6">
 			<input type="file" name="foto">
 		</div>
 	</div>
+	
 	<div class="form-group">
 		<center>
 	<input type="submit" value="simpan" class="btn btn-success" >

@@ -31,7 +31,7 @@
       <div class="form-group ">
         <label for="nis" class="control-label col-sm-2">NIS :</label>
         <div class="col-sm-6">
-        <input type="text" class="form-control" name="nis" value="<?php echo $r['nis']; ?>">
+        <input type="text" class="form-control" name="nis" value="<?php echo $r['nis']; ?>" readonly>
       </div>
       </div>
       <div class="form-group">

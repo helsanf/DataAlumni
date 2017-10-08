@@ -12,6 +12,9 @@
     </div>
   </div>
 </div>
+<!-- Modal Di atas adalah untuk edit data -->
+
+<!-- Modal dibawah ini untuk Tambah Data Siswa -->
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -19,7 +22,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Tambah Data Siswa</h4>
+        <center><h4 class="modal-title">Tambah Data Siswa</h4></center>
       </div>
       <div class="modal-body">
         <!-- dibawah taruh file form simpan -->
@@ -71,6 +74,18 @@
           <textarea class="form-control" name="alamat" placeholder="Masukan Alamat Anda"></textarea>
           </div>
         </div>
+        <div class="form-group">
+      		<label for="fb_user" class="control-label col-sm-2"> Facebook Anda </label>
+      		<div class="col-sm-6">
+      			<input type="text" class="form-control" name="fb_user" placeholder="Masukan URL Facebook Anda">
+      		</div>
+      	</div>
+        <div class="form-group">
+      		<label for="insta_user" class="control-label col-sm-2"> Instagram Anda </label>
+      		<div class="col-sm-6">
+      			<input type="text" class="form-control" name="insta_user" placeholder="Masukan URL instagram Anda">
+      		</div>
+      	</div>
         <div class="form-group">
           <label for="foto" class="control-label col-sm-2">Foto : </label>
           <div class="col-sm-6">

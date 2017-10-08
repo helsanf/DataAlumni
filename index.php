@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <?php
-session_start();
-include "koneksi.php";
 
-    
+include "koneksi.php";
+if(!isset($_SESSION))
+{
+    session_start();
+}
+
 
 if(isset($_SESSION['user'])){
   echo "<script language = 'javascript'>
@@ -31,9 +34,11 @@ if(isset($_SESSION['user'])){
   <!-- iCheck -->
   <link rel="stylesheet" href="assets/plugins/iCheck/square/blue.css">
 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
@@ -44,11 +49,11 @@ if(isset($_SESSION['user'])){
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <img src="images/tamara.png" class="img-circle" alt="Tamara" width="304" height="236">
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Silahkan Login Terlebih Dahulu</p>
 
     <form action="" method="post">
       <div class="form-group has-feedback">
@@ -61,16 +66,15 @@ if(isset($_SESSION['user'])){
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
+
+              <a href="register.php" class="btn btn-primary"> Daftar </a>
+
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
           <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
+        <div class="clearfix"> </div>
         <!-- /.col -->
       </div>
     </form>
