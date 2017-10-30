@@ -3,11 +3,13 @@
 include "koneksi.php";
 
 // Ambil data NIS yang dikirim oleh form_ubah.php melalui URL
-$id = $_GET['id'];
+$nis = $_GET['nis'];
 
 // Ambil Data yang Dikirim dari Form
-$nama_event = $_POST['nama_event'];
-$isi = $_POST['isi'];
+$nama = $_POST['nama'];
+$jenis_kelamin = $_POST['jenis_kelamin'];
+$telp = $_POST['telp'];
+$alamat = $_POST['alamat'];
 
 // Cek apakah user ingin mengubah fotonya atau tidak
 if(isset($_POST['ubah_foto'])){ // Jika user menceklis checkbox yang ada di form ubah, lakukan :
@@ -24,7 +26,7 @@ if(isset($_POST['ubah_foto'])){ // Jika user menceklis checkbox yang ada di form
 	// Proses upload
 	if(move_uploaded_file($tmp, $path)){ // Cek apakah gambar berhasil diupload atau tidak
 		// Query untuk menampilkan data siswa berdasarkan NIS yang dikirim
-		$query = "SELECT * FROM event_tamara WHERE id='".$id."'";
+		$query = "SELECT * FROM siswa WHERE nis='".$nis."'";
 		$sql = mysqli_query($conn, $query); // Eksekusi/Jalankan query dari variabel $query
 		$data = mysqli_fetch_array($sql); // Ambil data dari hasil eksekusi $sql
 
@@ -33,7 +35,7 @@ if(isset($_POST['ubah_foto'])){ // Jika user menceklis checkbox yang ada di form
 			unlink("images/".$data['foto']); // Hapus file foto sebelumnya yang ada di folder images
 
 		// Proses ubah data ke Database
-		$query = "UPDATE event_tamara SET nama_event='".$nama_event."', isi='".$isi."', foto='".$fotobaru."' WHERE id='".$id."'";
+		$query = "UPDATE siswa SET nama='".$nama."', jenis_kelamin='".$jenis_kelamin."', telp='".$telp."', alamat='".$alamat."', foto='".$fotobaru."' WHERE nis='".$nis."'";
 		$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 		if($sql){ // Cek jika proses simpan ke database sukses atau tidak
@@ -51,12 +53,12 @@ if(isset($_POST['ubah_foto'])){ // Jika user menceklis checkbox yang ada di form
 	}
 }else{ // Jika user tidak menceklis checkbox yang ada di form ubah, lakukan :
 	// Proses ubah data ke Database
-	$query = "UPDATE event_tamara SET nama_event='".$nama_event."', isi='".$isi."' WHERE id='".$id."'";
+	$query = "UPDATE siswa SET nama='".$nama."', jenis_kelamin='".$jenis_kelamin."', telp='".$telp."', alamat='".$alamat."' WHERE nis='".$nis."'";
 	$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 	if($sql){ // Cek jika proses simpan ke database sukses atau tidak
 		// Jika Sukses, Lakukan :
-		header("location: event_tamara.php"); // Redirect ke halaman index.php
+		header("location: home.php"); // Redirect ke halaman index.php
 	}else{
 		// Jika Gagal, Lakukan :
 		echo "Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.";
